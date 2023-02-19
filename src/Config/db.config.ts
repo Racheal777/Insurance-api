@@ -1,15 +1,17 @@
 //import {Sequelize}  from 'sequelize'
-const { Sequelize, DataTypes } = require('sequelize')
+const { Sequelize } = require('sequelize')
 import dotenv from 'dotenv'
 dotenv.config()
 
 
 
-let connectionString  = 'postgresql://postgres:bKAdThyZmPHyzHJrZU2y@containers-us-west-24.railway.app:7691/railway'
+let connectionString  = process.env.DB
 
 //connecting to database
 
-const sequelize = new Sequelize(connectionString)
+const sequelize = new Sequelize(connectionString, {
+    dialect:  'postgres' 
+})
 //checking if connection is done
 
 let db =  sequelize.authenticate().then(() => {
