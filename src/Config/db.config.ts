@@ -5,14 +5,11 @@ dotenv.config()
 
 
 
-let connectionString  = process.env.DB
+let connectionString  = 'postgresql://postgres:bKAdThyZmPHyzHJrZU2y@containers-us-west-24.railway.app:7691/railway'
 
 //connecting to database
-//let databaseName = 'enyata'
-//const sequelize = new Sequelize(`postgres://postgres:${process.env.PASSWORD}@localhost:5433/${databaseName}`) // Example for postgres
-const sequelize = new Sequelize(connectionString, {
-    dialect:  'postgres' 
-})
+
+const sequelize = new Sequelize(connectionString)
 //checking if connection is done
 
 let db =  sequelize.authenticate().then(() => {
