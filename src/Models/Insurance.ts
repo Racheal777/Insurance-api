@@ -58,7 +58,7 @@ Insurance.init({
 },
 
 {
-    tableName: 'insurance',
+    tableName: 'incidents',
     sequelize: db.sequelize
 },
 

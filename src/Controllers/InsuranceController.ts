@@ -3,6 +3,7 @@ import { Insurance } from '../Models/Insurance'
 import { NextFunction, Request, Response } from "express";
 import { Op } from 'sequelize';
 import axios from 'axios'
+import { IncidentSchema } from '../Models/Schema'
 
 class InsuranceController {
 
@@ -11,7 +12,10 @@ class InsuranceController {
 
 
         try {
-
+            const { error, value } = IncidentSchema.validate(req.body);
+        if(error){
+            res.send(error.details[0].message)
+        }else{
 
             let city = req.body.city
             let apiKey = process.env.APIKEY
@@ -28,7 +32,7 @@ class InsuranceController {
             res.json({ 'incident': newIncident })
 
             console.log(newIncident.toJSON())
-
+        }
 
         } catch (error) {
             console.log(error)
